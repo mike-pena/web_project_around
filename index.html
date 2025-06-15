@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Alrededor de los EE.UU" />
+    <meta name="author" content="Mike Peña" />
+    <meta name="keywords" content="fotografia, exhibición, estados unidos" />
+    <title>Alrededor de los EE.UU</title>
+    <link rel="stylesheet" href="pages/index.css" />
+    <link rel="shortcut icon" href="favicon.ico" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="header header_margin">
+        <img src="./images/logo.svg" alt="Logo" class="header__logo" />
+      </header>
+
+      <main class="content">
+        <section class="profile">
+          <img
+            src="./images/profile-picture.jpg"
+            alt="Profile picture"
+            class="profile__picture"
+          />
+          <div class="profile__info">
+            <div class="profile__info-container">
+              <h2 class="profile__name">Jacques Cousteau</h2>
+              <button class="profile__edit-button">
+                <img
+                  src="./images/edit-icon.png"
+                  alt="Edit profile"
+                  class="profile__edit-icon"
+                />
+              </button>
+            </div>
+            <p class="profile__about">Explorador</p>
+          </div>
+          <button class="profile__add-button">
+            <img
+              src="./images/add-icon.png"
+              alt="Add"
+              class="profile__add-icon"
+            />
+          </button>
+        </section>
+
+        <section class="photo-grid photo-grid_margin">
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/red-rocks.jpg"
+                alt="Red Rocks"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Red Rocks</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/monument-valley.jpg"
+                alt="Monument Valley"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Monument Valley</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/acadia-national-park.jpg"
+                alt="Acadia National Park"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Acadia National Park</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/grand-canyon.jpg"
+                alt="Grand Canyon"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Grand Canyon</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/mount -rainier.jpg"
+                alt="Mount Rainier"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Mount Rainier</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+          <div class="photo-grid__card">
+            <div class="photo-grid__image-container">
+              <img
+                src="./images/yosemite-valley.jpg"
+                alt="Yosemite Valley"
+                class="photo-grid__image"
+              />
+            </div>
+            <div class="photo-grid__content">
+              <h3 class="photo-grid__title">Yosemite Valley</h3>
+              <img
+                src="./images/like-icon.png"
+                alt="Like"
+                class="photo-grid__like-button"
+              />
+            </div>
+          </div>
+        </section>
+        <div class="popup">
+          <div class="popup__wrapper">
+            <img
+              src="./images/close__icon.png"
+              alt="Close"
+              class="popup__close"
+            />
+            <form class="popup__container">
+              <h2 class="popup__title">Editar perfil</h2>
+              <input class="popup__input" type="text" placeholder="Nombre" />
+              <input
+                class="popup__input"
+                type="text"
+                placeholder="Acerca de mí"
+              />
+              <button class="popup__button" type="submit">Guardar</button>
+            </form>
+          </div>
+        </div>
+      </main>
+      <footer class="footer">
+        <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
+      </footer>
+    </div>
+  </body>
+</html>
