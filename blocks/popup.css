@@ -11,6 +11,10 @@
   display: none;
 }
 
+.popup_opened {
+  display: flex;
+}
+
 .popup__wrapper {
   position: relative;
 }
@@ -19,6 +23,7 @@
   position: absolute;
   top: -35px;
   right: -35px;
+  cursor: pointer;
 }
 
 .popup__close:hover {
@@ -70,10 +75,26 @@
   font-size: 18px;
   padding: 13px 0;
   border-radius: 2px;
+  cursor: pointer;
+}
+
+.popup__button_inactive {
+  margin-top: 48px;
+  background-color: #fff;
+  border: 1px solid #c4c4c4;
+  color: #c4c4c4;
+  font-size: 18px;
+  padding: 13px 0;
+  border-radius: 2px;
+  cursor: default;
 }
 
 .popup__button:hover {
   opacity: 80%;
+}
+
+.popup__button_inactive:hover {
+  opacity: 100%;
 }
 
 @media screen and (max-width: 644px) {

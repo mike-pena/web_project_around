@@ -50,6 +50,7 @@
 
 .photo-grid__like-button:hover {
   opacity: 50%;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 950px) {

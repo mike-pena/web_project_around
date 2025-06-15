@@ -26,7 +26,9 @@
           <div class="profile__info">
             <div class="profile__info-container">
               <h2 class="profile__name">Jacques Cousteau</h2>
-              <button class="profile__edit-button">
+              <button
+                class="profile__edit-button profile__edit-button_action_edit"
+              >
                 <img
                   src="./images/edit-icon.png"
                   alt="Edit profile"
@@ -59,7 +61,7 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
@@ -76,7 +78,7 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
@@ -93,7 +95,7 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
@@ -110,7 +112,7 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
@@ -127,7 +129,7 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
@@ -144,23 +146,28 @@
               <img
                 src="./images/like-icon.png"
                 alt="Like"
-                class="photo-grid__like-button"
+                class="photo-grid__like-button photo-grid__like-button_act"
               />
             </div>
           </div>
         </section>
+
         <div class="popup">
           <div class="popup__wrapper">
             <img
               src="./images/close__icon.png"
               alt="Close"
-              class="popup__close"
+              class="popup__close popup__close_action_close"
             />
             <form class="popup__container">
               <h2 class="popup__title">Editar perfil</h2>
-              <input class="popup__input" type="text" placeholder="Nombre" />
               <input
-                class="popup__input"
+                class="popup__input popup__input_type_name"
+                type="text"
+                placeholder="Nombre"
+              />
+              <input
+                class="popup__input popup__input_type_about"
                 type="text"
                 placeholder="Acerca de mí"
               />
@@ -173,5 +180,6 @@
         <p class="footer__copyright">&copy; 2024 Around The U.S.</p>
       </footer>
     </div>
+    <script src="./scripts/script.js"></script>
   </body>
 </html>
