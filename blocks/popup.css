@@ -97,6 +97,18 @@
   opacity: 100%;
 }
 
+.popup__image {
+  max-width: 75vw;
+  max-height: 75vh;
+}
+
+.popup__image-title {
+  font-size: 12px;
+  color: #fff;
+  margin: 0;
+  margin-top: 10px;
+}
+
 @media screen and (max-width: 644px) {
   .popup__container {
     width: 282px;

@@ -1,31 +1,96 @@
-let page = document.querySelector(".page");
+const page = document.querySelector(".page");
+const editButton = page.querySelector(".profile__edit-button_action_edit");
+const addButton = page.querySelector(".profile__add-button_action_add");
+const closeButtons = page.querySelectorAll(".popup__close_action_close");
+const profileName = page.querySelector(".profile__name");
+const profileAbout = page.querySelector(".profile__about");
+const nameInput = page.querySelector(".popup__input_type_name");
+const aboutInput = page.querySelector(".popup__input_type_about");
+const editProfileForm = page.querySelector(".edit-profile-form");
+const addCardForm = page.querySelector(".add-card-form");
+const editProfileSubmitBtn = page.querySelector(".popup__button");
+const templateCard = document.querySelector(".template-card").content;
 
-let editButton = page.querySelector(".profile__edit-button_action_edit");
+const initialCards = [
+  {
+    name: "Red Rocks",
+    link: "./images/red-rocks.jpg",
+  },
+  {
+    name: "Monument Valley",
+    link: "./images/monument-valley.jpg",
+  },
+  {
+    name: "Acadia National Park",
+    link: "./images/acadia-national-park.jpg",
+  },
+  {
+    name: "Grand Canyon",
+    link: "./images/grand-canyon.jpg",
+  },
+  {
+    name: "Mount Rainier",
+    link: "./images/mount -rainier.jpg",
+  },
+  {
+    name: "Yosemite Valley",
+    link: "./images/yosemite-valley.jpg",
+  },
+];
 
-let closeButton = page.querySelector(".popup__close_action_close");
+function createCard(name, link) {
+  const clonedCard = templateCard
+    .querySelector(".photo-grid__card")
+    .cloneNode(true);
 
-let profileName = page.querySelector(".profile__name");
+  clonedCard.querySelector(".photo-grid__title").textContent = name;
+  clonedCard.querySelector(".photo-grid__image").src = link;
+  clonedCard.querySelector(".photo-grid__image").alt = name;
 
-let profileAbout = page.querySelector(".profile__about");
+  const likeButton = clonedCard.querySelector(".photo-grid__like-button");
+  const deleteButton = clonedCard.querySelector(".photo-grid__delete-button");
+  const cardImage = clonedCard.querySelector(".photo-grid__image");
 
-let nameInput = page.querySelector(".popup__input_type_name");
+  likeButton.addEventListener("click", function () {
+    likeButton.classList.toggle("photo-grid__like-button_act");
+  });
 
-let aboutInput = page.querySelector(".popup__input_type_about");
+  deleteButton.addEventListener("click", function () {
+    clonedCard.remove();
+  });
 
-let formElement = page.querySelector(".popup__container");
+  cardImage.addEventListener("click", function () {
+    openImagePopup(name, link);
+  });
 
-let popupButton = page.querySelector(".popup__button");
+  const photoGrid = page.querySelector(".photo-grid");
+  photoGrid.append(clonedCard);
+}
 
-function handleEditProfilePopup() {
-  let popup = page.querySelector(".popup");
+function handleEditProfilePopup(popupType) {
+  let popup = page.querySelector(`.popup_type_${popupType}`);
 
   nameInput.value = profileName.textContent;
   aboutInput.value = profileAbout.textContent;
 
   popup.classList.toggle("popup_opened");
 
-  popupButton.disabled = true;
-  popupButton.classList.add("popup__button_inactive");
+  if (popupType == "edit") {
+    const submitButton = page.querySelector(`.popup__button_type_${popupType}`);
+    submitButton.disabled = true;
+    submitButton.classList.add("popup__button_inactive");
+  }
+}
+
+function openImagePopup(title, imageUrl) {
+  const imagePopup = page.querySelector(".popup_type_image");
+  const popupImage = imagePopup.querySelector(".popup__image");
+  const popupTitle = imagePopup.querySelector(".popup__image-title");
+
+  popupImage.src = imageUrl;
+  popupImage.alt = title;
+  popupTitle.textContent = title;
+  imagePopup.classList.add("popup_opened");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -34,27 +99,59 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
 
-  handleEditProfilePopup();
+  handleEditProfilePopup("edit");
+}
+
+function handleAddCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const cardTitleInput = page.querySelector(
+    ".popup__input_type_place-name"
+  ).value;
+  const cardImageLinkInput = page.querySelector(
+    ".popup__input_type_image-link"
+  ).value;
+
+  createCard(cardTitleInput, cardImageLinkInput);
+
+  handleEditProfilePopup("add");
 }
 
 function checkForChanges() {
   nameChanged = nameInput.value !== profileName.textContent;
   aboutChanged = aboutInput.value !== profileAbout.textContent;
 
-  popupButton.disabled = !(nameChanged || aboutChanged);
+  editProfileSubmitBtn.disabled = !(nameChanged || aboutChanged);
 
-  if (popupButton.disabled == false) {
-    popupButton.classList.remove("popup__button_inactive");
+  if (editProfileSubmitBtn.disabled == false) {
+    editProfileSubmitBtn.classList.remove("popup__button_inactive");
   } else {
-    popupButton.classList.add("popup__button_inactive");
+    editProfileSubmitBtn.classList.add("popup__button_inactive");
   }
 }
 
-editButton.addEventListener("click", handleEditProfilePopup);
+initialCards.forEach(function (item) {
+  createCard(item.name, item.link);
+});
 
-closeButton.addEventListener("click", handleEditProfilePopup);
+editButton.addEventListener("click", () => {
+  handleEditProfilePopup("edit");
+});
 
-formElement.addEventListener("submit", handleProfileFormSubmit);
+addButton.addEventListener("click", () => {
+  handleEditProfilePopup("add");
+});
+
+closeButtons.forEach((button) => {
+  button.addEventListener("click", () => {
+    const popup = button.closest(".popup");
+    popup.classList.toggle("popup_opened");
+  });
+});
+
+editProfileForm.addEventListener("submit", handleProfileFormSubmit);
+
+addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 nameInput.addEventListener("input", checkForChanges);
 

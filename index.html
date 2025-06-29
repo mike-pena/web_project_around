@@ -38,7 +38,7 @@
             </div>
             <p class="profile__about">Explorador</p>
           </div>
-          <button class="profile__add-button">
+          <button class="profile__add-button profile__add-button_action_add">
             <img
               src="./images/add-icon.png"
               alt="Add"
@@ -47,119 +47,16 @@
           </button>
         </section>
 
-        <section class="photo-grid photo-grid_margin">
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/red-rocks.jpg"
-                alt="Red Rocks"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Red Rocks</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/monument-valley.jpg"
-                alt="Monument Valley"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Monument Valley</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/acadia-national-park.jpg"
-                alt="Acadia National Park"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Acadia National Park</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/grand-canyon.jpg"
-                alt="Grand Canyon"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Grand Canyon</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/mount -rainier.jpg"
-                alt="Mount Rainier"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Mount Rainier</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-          <div class="photo-grid__card">
-            <div class="photo-grid__image-container">
-              <img
-                src="./images/yosemite-valley.jpg"
-                alt="Yosemite Valley"
-                class="photo-grid__image"
-              />
-            </div>
-            <div class="photo-grid__content">
-              <h3 class="photo-grid__title">Yosemite Valley</h3>
-              <img
-                src="./images/like-icon.png"
-                alt="Like"
-                class="photo-grid__like-button photo-grid__like-button_act"
-              />
-            </div>
-          </div>
-        </section>
+        <section class="photo-grid photo-grid_margin"></section>
 
-        <div class="popup">
+        <div class="popup popup_type_edit">
           <div class="popup__wrapper">
             <img
               src="./images/close__icon.png"
               alt="Close"
               class="popup__close popup__close_action_close"
             />
-            <form class="popup__container">
+            <form class="popup__container edit-profile-form">
               <h2 class="popup__title">Editar perfil</h2>
               <input
                 class="popup__input popup__input_type_name"
@@ -171,8 +68,83 @@
                 type="text"
                 placeholder="Acerca de mí"
               />
-              <button class="popup__button" type="submit">Guardar</button>
+              <button
+                class="popup__button popup__button_type_edit"
+                type="submit"
+              >
+                Guardar
+              </button>
             </form>
+          </div>
+        </div>
+
+        <div class="popup popup_type_add">
+          <div class="popup__wrapper">
+            <img
+              src="./images/close__icon.png"
+              alt="Close"
+              class="popup__close popup__close_action_close"
+            />
+            <form class="popup__container add-card-form">
+              <h2 class="popup__title">Nuevo Lugar</h2>
+              <input
+                class="popup__input popup__input_type_place-name"
+                type="text"
+                placeholder="Título"
+              />
+              <input
+                class="popup__input popup__input_type_image-link"
+                type="text"
+                placeholder="Enlace a la imagen"
+              />
+              <button
+                class="popup__button popup__button_type_add"
+                type="submit"
+              >
+                Crear
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="popup popup_type_add">
+          <div class="popup__wrapper">
+            <img
+              src="./images/close__icon.png"
+              alt="Close"
+              class="popup__close popup__close_action_close"
+            />
+            <form class="popup__container add-card-form">
+              <h2 class="popup__title">Nuevo Lugar</h2>
+              <input
+                class="popup__input popup__input_type_place-name"
+                type="text"
+                placeholder="Título"
+              />
+              <input
+                class="popup__input popup__input_type_image-link"
+                type="text"
+                placeholder="Enlace a la imagen"
+              />
+              <button
+                class="popup__button popup__button_type_add"
+                type="submit"
+              >
+                Crear
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <div class="popup popup_type_image">
+          <div class="popup__wrapper">
+            <img
+              src="./images/close__icon.png"
+              alt="Close"
+              class="popup__close popup__close_action_close"
+            />
+            <img class="popup__image" />
+            <p class="popup__image-title">popup image title</p>
           </div>
         </div>
       </main>
@@ -180,6 +152,26 @@
         <p class="footer__copyright">&copy; 2025 Around The U.S.</p>
       </footer>
     </div>
+    <template class="template-card">
+      <div class="photo-grid__card">
+        <div class="photo-grid__image-container">
+          <img src="" alt="" class="photo-grid__image" />
+          <button
+            aria-label="delete button"
+            class="photo-grid__delete-button"
+            type="button"
+          ></button>
+        </div>
+        <div class="photo-grid__content">
+          <h3 class="photo-grid__title"></h3>
+          <button
+            aria-label="like button"
+            class="photo-grid__like-button"
+            type="button"
+          ></button>
+        </div>
+      </div>
+    </template>
     <script src="./scripts/index.js"></script>
   </body>
 </html>
