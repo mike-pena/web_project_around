@@ -59,15 +59,25 @@
             <form class="popup__container edit-profile-form">
               <h2 class="popup__title">Editar perfil</h2>
               <input
+                id="name-input"
                 class="popup__input popup__input_type_name"
                 type="text"
                 placeholder="Nombre"
+                minlength="2"
+                maxlength="40"
+                required
               />
+              <span class="form__input-error name-input-error"></span>
               <input
+                id="about-input"
                 class="popup__input popup__input_type_about"
                 type="text"
                 placeholder="Acerca de mí"
+                minlength="2"
+                maxlength="200"
+                required
               />
+              <span class="form__input-error about-input-error"></span>
               <button
                 class="popup__button popup__button_type_edit"
                 type="submit"
@@ -88,44 +98,23 @@
             <form class="popup__container add-card-form">
               <h2 class="popup__title">Nuevo Lugar</h2>
               <input
+                id="place-name-input"
                 class="popup__input popup__input_type_place-name"
                 type="text"
                 placeholder="Título"
+                minlength="2"
+                maxlength="30"
+                required
               />
+              <span class="form__input-error place-name-input-error"></span>
               <input
+                id="image-url-input"
                 class="popup__input popup__input_type_image-link"
-                type="text"
+                type="url"
                 placeholder="Enlace a la imagen"
+                required
               />
-              <button
-                class="popup__button popup__button_type_add"
-                type="submit"
-              >
-                Crear
-              </button>
-            </form>
-          </div>
-        </div>
-
-        <div class="popup popup_type_add">
-          <div class="popup__wrapper">
-            <img
-              src="./images/close__icon.png"
-              alt="Close"
-              class="popup__close popup__close_action_close"
-            />
-            <form class="popup__container add-card-form">
-              <h2 class="popup__title">Nuevo Lugar</h2>
-              <input
-                class="popup__input popup__input_type_place-name"
-                type="text"
-                placeholder="Título"
-              />
-              <input
-                class="popup__input popup__input_type_image-link"
-                type="text"
-                placeholder="Enlace a la imagen"
-              />
+              <span class="form__input-error image-url-input-error"></span>
               <button
                 class="popup__button popup__button_type_add"
                 type="submit"

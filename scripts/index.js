@@ -8,7 +8,7 @@ const nameInput = page.querySelector(".popup__input_type_name");
 const aboutInput = page.querySelector(".popup__input_type_about");
 const editProfileForm = page.querySelector(".edit-profile-form");
 const addCardForm = page.querySelector(".add-card-form");
-const editProfileSubmitBtn = page.querySelector(".popup__button");
+const editProfileSubmitBtn = page.querySelector(".popup__button_type_edit");
 const templateCard = document.querySelector(".template-card").content;
 
 const initialCards = [
@@ -67,21 +67,6 @@ function createCard(name, link) {
   photoGrid.append(clonedCard);
 }
 
-function handleEditProfilePopup(popupType) {
-  let popup = page.querySelector(`.popup_type_${popupType}`);
-
-  nameInput.value = profileName.textContent;
-  aboutInput.value = profileAbout.textContent;
-
-  popup.classList.toggle("popup_opened");
-
-  if (popupType == "edit") {
-    const submitButton = page.querySelector(`.popup__button_type_${popupType}`);
-    submitButton.disabled = true;
-    submitButton.classList.add("popup__button_inactive");
-  }
-}
-
 function openImagePopup(title, imageUrl) {
   const imagePopup = page.querySelector(".popup_type_image");
   const popupImage = imagePopup.querySelector(".popup__image");
@@ -90,7 +75,8 @@ function openImagePopup(title, imageUrl) {
   popupImage.src = imageUrl;
   popupImage.alt = title;
   popupTitle.textContent = title;
-  imagePopup.classList.add("popup_opened");
+
+  openPopup("image");
 }
 
 function handleProfileFormSubmit(evt) {
@@ -99,7 +85,8 @@ function handleProfileFormSubmit(evt) {
   profileName.textContent = nameInput.value;
   profileAbout.textContent = aboutInput.value;
 
-  handleEditProfilePopup("edit");
+  const popup = page.querySelector(".popup_type_edit");
+  closePopup(popup);
 }
 
 function handleAddCardFormSubmit(evt) {
@@ -114,38 +101,67 @@ function handleAddCardFormSubmit(evt) {
 
   createCard(cardTitleInput, cardImageLinkInput);
 
-  handleEditProfilePopup("add");
+  const popup = page.querySelector(".popup_type_add");
+  closePopup(popup);
 }
 
-function checkForChanges() {
-  nameChanged = nameInput.value !== profileName.textContent;
-  aboutChanged = aboutInput.value !== profileAbout.textContent;
+let currentPopup = null;
 
-  editProfileSubmitBtn.disabled = !(nameChanged || aboutChanged);
+function openPopup(popupType) {
+  const popup = page.querySelector(`.popup_type_${popupType}`);
 
-  if (editProfileSubmitBtn.disabled == false) {
-    editProfileSubmitBtn.classList.remove("popup__button_inactive");
-  } else {
-    editProfileSubmitBtn.classList.add("popup__button_inactive");
+  closeCurrentPopup();
+
+  popup.classList.add("popup_opened");
+  currentPopup = popup;
+  document.addEventListener("keydown", handleEscClose);
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
+
+  if (popup === currentPopup) {
+    currentPopup = null;
+    document.removeEventListener("keydown", handleEscClose);
   }
 }
+
+function closeCurrentPopup() {
+  if (currentPopup) {
+    closePopup(currentPopup);
+  }
+}
+
+function handleEscClose(e) {
+  if (e.key === "Escape") {
+    closeCurrentPopup();
+  }
+}
+
+page.querySelectorAll(".popup").forEach((popup) => {
+  popup.addEventListener("mousedown", (e) => {
+    if (e.target === popup) {
+      closePopup(popup);
+    }
+  });
+});
 
 initialCards.forEach(function (item) {
   createCard(item.name, item.link);
 });
 
 editButton.addEventListener("click", () => {
-  handleEditProfilePopup("edit");
+  openPopup("edit");
 });
 
 addButton.addEventListener("click", () => {
-  handleEditProfilePopup("add");
+  openPopup("add");
 });
 
 closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const popup = button.closest(".popup");
-    popup.classList.toggle("popup_opened");
+    closePopup(popup);
   });
 });
 
@@ -153,6 +169,6 @@ editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
-nameInput.addEventListener("input", checkForChanges);
+nameInput.value = profileName.textContent;
 
-aboutInput.addEventListener("input", checkForChanges);
+aboutInput.value = profileAbout.textContent;
