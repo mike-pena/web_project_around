@@ -1,9 +1,9 @@
 export default class Card {
-  constructor(data, cardSelector, handleImagePopup) {
+  constructor(data, cardSelector, handleCardClick) {
     this._name = data.name;
     this._imageLink = data.link;
     this._cardSelector = cardSelector;
-    this._handleImagePopup = handleImagePopup;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -21,7 +21,7 @@ export default class Card {
     });
 
     this._image.addEventListener("click", () => {
-      this._handleImagePopup(this._name, this._imageLink);
+      this._handleCardClick(this._name, this._imageLink);
     });
 
     this._deleteButton.addEventListener("click", () => {

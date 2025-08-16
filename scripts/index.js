@@ -1,6 +1,7 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
+import PopupWithImage from "./PopupWithImage.js";
 import {
   openPopup,
   closePopup,
@@ -51,13 +52,18 @@ const cardList = new Section(
   {
     items: initialCards,
     renderer: (item) => {
-      const card = new Card(item, ".template-card", openImagePopup);
+      const card = new Card(item, ".template-card", () => {
+        popupImage.open(card._name, card._imageLink);
+      });
       const cardElement = card.generateCard();
       cardList.addItem(cardElement);
     },
   },
   ".photo-grid"
 );
+
+const popupImage = new PopupWithImage(".popup_type_image");
+popupImage.setEventListeners();
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -99,14 +105,14 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   openPopup("add");
 });
-
+/*
 closeButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const popup = button.closest(".popup");
     closePopup(popup);
   });
 });
-
+*/
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
@@ -129,4 +135,5 @@ nameInput.value = profileName.textContent;
 aboutInput.value = profileAbout.textContent;
 
 cardList.renderItems();
-setPopupMousedownEventListener();
+
+//setPopupMousedownEventListener();
