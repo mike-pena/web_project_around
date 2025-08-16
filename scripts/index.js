@@ -2,17 +2,11 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
-import {
-  openPopup,
-  closePopup,
-  setPopupMousedownEventListener,
-  openImagePopup,
-} from "./utils.js";
+import { openPopup, closePopup } from "./utils.js";
 
 const page = document.querySelector(".page");
 const editButton = page.querySelector(".profile__edit-button_action_edit");
 const addButton = page.querySelector(".profile__add-button_action_add");
-const closeButtons = page.querySelectorAll(".popup__close_action_close");
 const profileName = page.querySelector(".profile__name");
 const profileAbout = page.querySelector(".profile__about");
 const nameInput = page.querySelector(".popup__input_type_name");
@@ -88,7 +82,9 @@ function handleAddCardFormSubmit(evt) {
   const card = new Card(
     { name: cardTitleInput, link: cardImageLinkInput },
     ".template-card",
-    openImagePopup
+    () => {
+      popupImage.open(cardTitleInput, cardImageLinkInput);
+    }
   );
 
   const cardElement = card.generateCard();
@@ -105,14 +101,7 @@ editButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   openPopup("add");
 });
-/*
-closeButtons.forEach((button) => {
-  button.addEventListener("click", () => {
-    const popup = button.closest(".popup");
-    closePopup(popup);
-  });
-});
-*/
+
 editProfileForm.addEventListener("submit", handleProfileFormSubmit);
 
 addCardForm.addEventListener("submit", handleAddCardFormSubmit);
@@ -135,5 +124,3 @@ nameInput.value = profileName.textContent;
 aboutInput.value = profileAbout.textContent;
 
 cardList.renderItems();
-
-//setPopupMousedownEventListener();

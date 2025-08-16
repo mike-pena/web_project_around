@@ -19,18 +19,6 @@ export function closePopup(popup) {
   }
 }
 
-export function openImagePopup(title, imageUrl) {
-  const imagePopup = document.querySelector(".popup_type_image");
-  const popupImage = imagePopup.querySelector(".popup__image");
-  const popupTitle = imagePopup.querySelector(".popup__image-title");
-
-  popupImage.src = imageUrl;
-  popupImage.alt = title;
-  popupTitle.textContent = title;
-
-  openPopup("image");
-}
-
 export function setPopupMousedownEventListener() {
   document.querySelectorAll(".popup").forEach((popup) => {
     popup.addEventListener("mousedown", (e) => {
