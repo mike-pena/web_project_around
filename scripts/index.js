@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import Section from "./Section.js";
 import {
   openPopup,
   closePopup,
@@ -46,13 +47,17 @@ const initialCards = [
   },
 ];
 
-function renderCards() {
-  initialCards.forEach((item) => {
-    const card = new Card(item, ".template-card", openImagePopup);
-    const cardElement = card.generateCard();
-    photoGrid.append(cardElement);
-  });
-}
+const cardList = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item, ".template-card", openImagePopup);
+      const cardElement = card.generateCard();
+      cardList.addItem(cardElement);
+    },
+  },
+  ".photo-grid"
+);
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -123,5 +128,5 @@ page.querySelectorAll(settings.formSelector).forEach((form) => {
 nameInput.value = profileName.textContent;
 aboutInput.value = profileAbout.textContent;
 
-renderCards();
+cardList.renderItems();
 setPopupMousedownEventListener();
