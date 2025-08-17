@@ -2,7 +2,7 @@ import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
 import Section from "./Section.js";
 import PopupWithImage from "./PopupWithImage.js";
-import { openPopup, closePopup } from "./utils.js";
+import PopupWithForm from "./PopupWithForm.js";
 
 const page = document.querySelector(".page");
 const editButton = page.querySelector(".profile__edit-button_action_edit");
@@ -11,9 +11,6 @@ const profileName = page.querySelector(".profile__name");
 const profileAbout = page.querySelector(".profile__about");
 const nameInput = page.querySelector(".popup__input_type_name");
 const aboutInput = page.querySelector(".popup__input_type_about");
-const editProfileForm = page.querySelector(".edit-profile-form");
-const addCardForm = page.querySelector(".add-card-form");
-const photoGrid = document.querySelector(".photo-grid");
 
 const initialCards = [
   {
@@ -59,52 +56,28 @@ const cardList = new Section(
 const popupImage = new PopupWithImage(".popup_type_image");
 popupImage.setEventListeners();
 
-function handleProfileFormSubmit(evt) {
-  evt.preventDefault();
+const popupEditProfile = new PopupWithForm(".popup_type_edit", (formValues) => {
+  profileName.textContent = formValues.name;
+  profileAbout.textContent = formValues.about;
+});
+popupEditProfile.setEventListeners();
 
-  profileName.textContent = nameInput.value;
-  profileAbout.textContent = aboutInput.value;
-
-  const popup = page.querySelector(".popup_type_edit");
-  closePopup(popup);
-}
-
-function handleAddCardFormSubmit(evt) {
-  evt.preventDefault();
-
-  const cardTitleInput = page.querySelector(
-    ".popup__input_type_place-name"
-  ).value;
-  const cardImageLinkInput = page.querySelector(
-    ".popup__input_type_image-link"
-  ).value;
-
-  const card = new Card(
-    { name: cardTitleInput, link: cardImageLinkInput },
-    ".template-card",
-    () => {
-      popupImage.open(cardTitleInput, cardImageLinkInput);
-    }
-  );
-
+const popupAddCard = new PopupWithForm(".popup_type_add", (formValues) => {
+  const card = new Card(formValues, ".template-card", () => {
+    popupImage.open(formValues.name, formValues.link);
+  });
   const cardElement = card.generateCard();
-  photoGrid.append(cardElement);
-
-  const popup = page.querySelector(".popup_type_add");
-  closePopup(popup);
-}
+  cardList.addItem(cardElement);
+});
+popupAddCard.setEventListeners();
 
 editButton.addEventListener("click", () => {
-  openPopup("edit");
+  popupEditProfile.open();
 });
 
 addButton.addEventListener("click", () => {
-  openPopup("add");
+  popupAddCard.open();
 });
-
-editProfileForm.addEventListener("submit", handleProfileFormSubmit);
-
-addCardForm.addEventListener("submit", handleAddCardFormSubmit);
 
 const settings = {
   formSelector: "form",
